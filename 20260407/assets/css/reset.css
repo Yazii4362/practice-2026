@@ -1,0 +1,46 @@
+/* 기본 여백 제거 */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 리스트 점 제거 */
+ul, ol{
+    list-style: none;
+}
+
+/* 링크 기본 스타일 제거 */
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+/* 이미지 아래 미세 공백 제거 */
+img{
+    display: block;
+    max-width: 100%;
+}
+
+/* body 기본 설정 */
+body{
+    line-height: 1;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 버튼, 인풋 폰트 상속 */
+button,
+input,
+textarea,
+select{
+    font: inherit;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+/* 제목 기본 굵기 정리 */
+h1, h2, h3, h4, h5, h6{
+    font-size: inherit;
+    font-weight: inherit;
+}

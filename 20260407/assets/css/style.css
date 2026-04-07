@@ -1,0 +1,127 @@
+header{
+    background-color: #fffd74;
+    padding: 20px 40px;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 로고 */
+h1{
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* 메뉴 */
+.navi{
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.navi a{
+    color: #222;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.kv{
+    background-image: url();
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 3rem 0;
+    /* 바디폰트를 기준으로 rem 배수 적용 */
+}
+
+body,h1,h2,h3,p{
+    font-size: 16px;
+}
+
+.kv-title h1{
+    color: rgb(0, 0, 0);
+    padding: 30px 0;
+    text-align: center;
+
+}
+
+.kv-title p{
+    font-size: 1.8em;
+
+}
+
+.kv-title h1{
+    font-size: 2rem;
+
+}
+
+
+/* 햄버거 아이콘 */
+.menu img{
+    width: 30px;
+    cursor: pointer;
+    display: none;
+}
+
+
+@media (max-width: 1280px){
+ 
+    .navi{
+        display: none;
+    }
+
+    .menu img{
+        display: block;
+        cursor: pointer;
+    }
+}
+
+
+
+@media (max-width: 1024px){
+ 
+    .navi{
+        display: none;
+    }
+
+    .menu img{
+        display: block;
+        cursor: pointer;
+    }
+}
+
+/* 태블릿/모바일 */
+@media (max-width: 768px){
+   
+    .navi{
+        display: none;
+    }
+
+    .menu img{
+        display: block;
+        cursor: pointer;
+    }
+
+    .kv-title h1{
+        font-size: 1.5rem;
+    }
+
+    .kv{
+        height: auto;
+    }
+}
+
+@media (max-width: 540px){
+ 
+    .navi{
+        display: none;
+    }
+
+    .menu img{
+        display: block;
+        cursor: pointer;
+    }
+}
+

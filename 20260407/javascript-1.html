@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>자바스크립트 연습</h1>
+    <p> 동적 움직임을 만들 때 사용합니다. </p>
+    <p> 자바스크립트는 HTML과 CSS로는 할 수 없는 동적인 움직임을 만들어 낼 수 있습니다. </p>
+    <p> 자바스크립트는 대부분 /body 태그 내에서 사용됩니다.</p>
+
+    <button class="btn">click</button>  
+    <script>
+        //변수
+        //변수는 let, const, var로 선언할 수 있습니다.
+        //let은 재할당이 가능하지만, const는 재할당이 불가능합니다. var는 ES6 이전에 사용되던 변수 선언 방식으로, 현재는 let과 const가 더 많이 사용됩니다.
+        let a = 10; //변수 a에 10을 할당    
+        const b = 20; //변수 b에 20을 할당
+        //a = 30; //변수 a에 30을 재할당 (let은 재할당이 가능하지만, const는 재할당이 불가능합니다.)
+        const btn = document.querySelector('.btn'); //클래스명이 btn인 요소를 선택하여 변수 btn에 할당
+</body>
+</html>
