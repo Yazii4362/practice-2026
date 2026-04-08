@@ -1,0 +1,62 @@
+/* reset.css */
+
+/* 1. 모든 요소 기본값 제거 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 2. html, body 기본 설정 */
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+/* 3. 이미지, 비디오 */
+img, picture, video, canvas {
+    display: block;
+    max-width: 100%;
+}
+
+/* 4. 리스트 스타일 제거 */
+ul, ol {
+    list-style: none;
+}
+
+/* 5. 링크 기본 스타일 제거 */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* 6. 버튼 스타일 초기화 */
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+/* 7. input, textarea */
+input, textarea {
+    border: none;
+    outline: none;
+}
+
+/* 8. 테이블 */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* 9. 제목 태그 font 상속 */
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: normal;
+}
+
+/* 10. body 기본 폰트 */
+body {
+    font-family: sans-serif;
+    line-height: 1.4;
+}

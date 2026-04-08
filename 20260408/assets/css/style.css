@@ -1,0 +1,235 @@
+@import url('common.css');
+
+/* 기본 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* 헤더 전체 */
+.header_wrap {
+    background-color: #fff;
+    padding: 10px 20px;
+}
+
+/* 헤더 안 가로 정렬 */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 가운데 네비 */
+.navi {
+    display: flex;
+    gap: 30px;
+}
+
+/* 네비 글자 */
+.navi a {
+    font-size: 18px;
+    font-family: 'Paperozi';
+    font-weight: 500;
+    color: #222;
+}
+
+/* 오른쪽 버튼 */
+.direct_btn {
+    font-family: 'Paperozi';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #4144D1;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 90px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* 버튼 안 글자 */
+.direct_btn>span {
+    margin-right: 5px;
+}
+
+/* 버튼 안 화살표 이미지 */
+.direct_btn>img {
+
+    width: 12px;
+    height: 12px;
+}
+
+.kv {
+    width: 100%;
+    height: 868px;
+    background-image: url('../images/kv-image.webp');
+    background-repeat: no-repeat;
+    /* background-size: 100%; */
+    background-position: center;
+}
+
+.kv-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    height: 868px;
+}
+
+.intro-icon {
+    display: inline-block;
+    padding: 20px 30px;
+    border-radius: 200px;
+    background-color: #F5FAFD;
+    text-align: center;
+    /* height: 90px; */
+}
+/* 전체 틀을 가운데로 정렬하고 자식(카드)들을 가로로 나열하는 역할 */
+.content-section {
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    
+    /* 주석 해제 및 수정 */
+    display: flex; 
+    gap: 50px;
+    text-align: center;
+}
+
+/* 개별 카드의 디자인 및 내부 세로 정렬 역할 */
+.intro-card {
+    /* 3개의 카드가 부모의 너비를 1:1:1로 공평하게 나누어 가집니다. */
+    flex: 1; 
+    
+    display: flex;
+    /* 주석 해제: 아이콘 아래에 텍스트가 오도록 세로로 배치합니다. */
+    flex-direction: column; 
+    align-items: center;
+}
+
+.intro-icon {
+    /* 아이콘과 텍스트 사이의 간격을 마진으로 띄워주는 것이 좋습니다. */
+    margin-bottom: 20px; 
+}
+.intro-text h3 {
+    margin-top: 40px;
+    font-weight: normal;
+}
+
+.intro-text p {
+    margin-top: 20px;
+    font-family: 'Isamanru';
+    font-weight: 300;
+    line-height: 1.2;
+    /* 행간 */
+    justify-content: center;
+}
+
+.kv-title h2,
+h3 {
+    line-height: 1.3;
+}
+
+.info {
+    position: relative;
+}
+
+.info-content {
+    width: 1280px;
+    margin: auto;
+    display: flex;
+}
+
+.info-text {
+    width: 50%;
+    height: 489px;
+    background-color: #21212D;
+    color: #fff;
+    padding: 173px 0;
+}
+
+.info-text::after {
+    content: "";
+    display: block;
+    width: 50%;
+    height: 489px;
+    top: 0;
+    left: 0;
+    background-color: #21212D;
+    position: absolute;
+    z-index: -1;
+
+}
+
+.info-img::after {
+    content: "";
+    display: block;
+    width: 50%;
+    height: 489px;
+    top: 0;
+    left: auto;
+    background-image: url(../images/lent-info.png);
+    position: absolute;
+}
+
+.info-tit {
+    font-family: 'Isamanru';
+    font-weight: normal;
+    font-size: 35px;
+    margin-bottom: 27px;
+}
+
+.info {
+    display: none;
+}
+
+.intro {
+    /* display: none; */
+}
+
+@media(max-width:1280px) {
+    .content-section{
+        width: 100%;
+    }
+}
+@media(max-width:1280px) and (min-width:768px) {
+    .intro-content{
+        width: 30%;
+    }
+}
+
+@media(max-width:768px) {
+    .navi {
+        display: none;
+    }
+
+    .direct_btn {
+        padding: 10px 10px;
+    }
+}
+
+@media(max-width:540px) {
+    .logo-title {
+        font-size: 0.9rem;
+    }
+    .content-section{
+        flex-direction: column;
+    }
+}
+@media(max-width:320px) {
+    .direct_btn{
+        display: none;
+    }
+}
