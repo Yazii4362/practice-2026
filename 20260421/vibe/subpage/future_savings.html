@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>청년미래적금 만기 수령액 계산기 | YOUTH CALC</title>
+    <!-- Pretendard Font -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <!-- jQuery Library -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../assets/js/script.js" defer></script>
+</head>
+<body>
+    <!-- Header / Nav -->
+    <header class="header">
+        <div class="nav-container">
+            <h1 class="logo"><a href="../index.html">YOUTH<span>CALC</span></a></h1>
+            <button class="hamburger-btn" aria-label="메뉴 열기">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="../index.html">홈</a></li>
+                    <li><a href="#" class="active">적금/예금</a></li>
+                    <li><a href="#">대출/주거</a></li>
+                    <li><a href="#">세금/연말정산</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        <div class="page-header">
+            <h2>청년미래적금<br>3년 만기 수령액은? 💰</h2>
+            <p>매월 얼마씩, 어떤 조건으로 저축할지 입력해보세요.</p>
+        </div>
+
+        <section class="calculator-layout">
+            <!-- Left: Settings Panel -->
+            <div class="calc-panel form-panel">
+                <div class="input-group">
+                    <label for="income-tier">가입 유형</label>
+                    <div class="select-wrapper">
+                        <select id="income-tier">
+                            <option value="general">일반형 (정부기여금 6%, 월 최대 3만원)</option>
+                            <option value="preferential">우대형 (정부기여금 12%, 월 최대 6만원)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="monthly-amount-input">매월 저축 금액 (월 최대 50만원)</label>
+                    <div class="flex-input">
+                        <input type="text" id="monthly-amount-input" value="500,000">
+                        <span class="unit">원</span>
+                    </div>
+                    <div class="slider-wrapper">
+                        <input type="range" id="monthly-amount" min="1000" max="500000" step="1000" value="500000">
+                        <div class="slider-labels">
+                            <span>1천원</span>
+                            <span>50만원</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="basic-rate">기본 금리</label>
+                        <div class="flex-input">
+                            <input type="number" id="basic-rate" min="0" max="10" step="0.1" value="5.0">
+                            <span class="unit">%</span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="prime-rate">우대 금리</label>
+                        <div class="flex-input">
+                            <input type="number" id="prime-rate" min="0" max="10" step="0.1" value="1.0">
+                            <span class="unit">%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Result Panel -->
+            <div class="calc-panel result-panel">
+                <div class="result-header">
+                    <h3>3년 뒤 내 손에 들어올 돈</h3>
+                    <div class="total-amount"><span id="total-result">0</span>원</div>
+                </div>
+
+                <div class="chart-wrapper">
+                    <div class="progress-bar">
+                        <div class="progress-segment type-principal" id="bar-principal"></div>
+                        <div class="progress-segment type-interest" id="bar-interest"></div>
+                        <div class="progress-segment type-gov" id="bar-gov"></div>
+                    </div>
+                </div>
+
+                <ul class="breakdown-list">
+                    <li>
+                        <div class="label"><span class="dot type-principal"></span>내가 넣은 원금</div>
+                        <div class="value"><span id="val-principal">0</span>원</div>
+                    </li>
+                    <li>
+                        <div class="label"><span class="dot type-interest"></span>은행 비과세 이자</div>
+                        <div class="value"><span id="val-interest">0</span>원</div>
+                    </li>
+                    <li>
+                        <div class="label"><span class="dot type-gov"></span>정부 기여금</div>
+                        <div class="value"><span id="val-gov">0</span>원</div>
+                    </li>
+                </ul>
+                <div class="notice">
+                    * 위 계산 결과는 이해를 돕기 위한 예상 금액이며, 비과세(15.4% 면제)가 반영되었습니다.
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

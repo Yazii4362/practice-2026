@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: aliceblue;
+        }
+
+        header {
+            background-color: darkblue;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        header ul {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+            transition: all 0.5s;
+        }
+
+        .mo-navi {
+            display: none;
+        }
+
+        @media(max-width:768px) {
+            header ul {
+                flex-direction: column;
+                position: absolute;
+                background-color: aqua;
+                width: 50%;
+                display: none;
+                text-align: center;
+                z-index: index 0;
+                top: 0;
+                height: 100%;
+
+            }
+
+            .header li {
+                margin: 20px 0;
+            }
+
+            .mo-navi {
+                display: flex;
+                padding: 20px 0;
+                justify-content: flex-end;
+                cursor: pointer;
+            }
+
+            .mo-navi img {
+                margin-right: 30px;
+                width: 60px;
+            }
+
+            .block {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="mo-navi">
+            <img src="assets/images/patient_9411741.png" alt="">
+        </div>
+
+        <ul>
+            <li><a href="#">홈</a></li>
+            <li><a href="#">블로그</a></li>
+            <li><a href="#">카페</a></li>
+            <li><a href="#">애드포스트 1,801원</a></li>
+            <li><a href="#">추카추카</a></li>
+        </ul>
+
+
+    </header>
+    <script src="asset/js/libs/jquery.min.js"></script>
+    <script>
+        $(".mo-navi").click(function () {
+            $("header ul").addClass("block");
+            $(this).removeClass("block");
+
+        })
+    </script>
+</body>
+
+</html>

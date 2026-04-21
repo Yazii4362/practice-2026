@@ -96,14 +96,15 @@ a {
     text-align: center;
     /* height: 90px; */
 }
+
 /* 전체 틀을 가운데로 정렬하고 자식(카드)들을 가로로 나열하는 역할 */
 .content-section {
     max-width: 1280px;
     width: 100%;
     margin: 0 auto;
-    
+
     /* 주석 해제 및 수정 */
-    display: flex; 
+    display: flex;
     gap: 50px;
     text-align: center;
 }
@@ -111,18 +112,19 @@ a {
 /* 개별 카드의 디자인 및 내부 세로 정렬 역할 */
 .intro-card {
     /* 3개의 카드가 부모의 너비를 1:1:1로 공평하게 나누어 가집니다. */
-    flex: 1; 
-    
+    flex: 1;
+
     display: flex;
     /* 주석 해제: 아이콘 아래에 텍스트가 오도록 세로로 배치합니다. */
-    flex-direction: column; 
+    flex-direction: column;
     align-items: center;
 }
 
 .intro-icon {
     /* 아이콘과 텍스트 사이의 간격을 마진으로 띄워주는 것이 좋습니다. */
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
 }
+
 .intro-text h3 {
     margin-top: 40px;
     font-weight: normal;
@@ -200,15 +202,57 @@ h3 {
 }
 
 @media(max-width:1280px) {
-    .content-section{
+    .content-section {
         width: 100%;
     }
 }
+
 @media(max-width:1280px) and (min-width:768px) {
-    .intro-content{
+    .intro-content {
         width: 30%;
     }
 }
+
+@media(max-width:1280px) {
+    display：none;
+}
+
+@media(max-width:1280px) {
+    .info-content {
+
+        width: 100%;
+        padding: 0 20px;
+    }
+}
+
+.info-img::after {
+    display: none;
+}
+
+.info-text {
+    width: 100%;
+}
+
+.info-img {
+    padding: 100px 20px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.info-content {
+    flex-direction: column;
+    padding: 0%;
+}
+
+.info-text {
+    flex-direction: column;
+    padding: 0%;
+}
+
+.info-text {
+    padding: 100PX 20px;
+}
+
 
 @media(max-width:768px) {
     .navi {
@@ -224,12 +268,14 @@ h3 {
     .logo-title {
         font-size: 0.9rem;
     }
-    .content-section{
+
+    .content-section {
         flex-direction: column;
     }
 }
+
 @media(max-width:320px) {
-    .direct_btn{
+    .direct_btn {
         display: none;
     }
 }

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <p id="info-text">예지는 지금 공부 중입니다.</p>
+    <button id="change-btn">예지의 상태 변경</button>
+
+    <script>
+        $("#change-btn").click(function(){
+            // 1. 문장을 바꿉니다.
+            $("#info-text").text("예지는 배가 고프면 화가납니다. 배고파!");
+
+            // 2. 바뀐 문장을 가져옵니다.
+            var currentText = $("#info-text").text();
+
+            // 3. "배고파!"라는 글자가 있으면 변신!
+            if (currentText.includes("배고파!")) {
+                $("#info-text").css("font-size", "50px").css("border", "5px solid gold");
+            }
+        });
+    </script>
+</body>
+</html>
