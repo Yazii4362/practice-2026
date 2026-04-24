@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        li{
+            list-style: none;
+        }
+
+        a{
+            text-decoration: none;
+            color: hotpink;
+            display: block;
+            padding: 10px;
+        }
+
+        .menu{
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            text-align: center;
+        }
+
+        .menu > li{
+            position: relative;
+        }
+
+        .menu > li:hover > a{
+            background-color: hotpink;
+            color: white;
+        }
+
+        .menu-btn{
+            display: none;
+        }
+
+        .sub{
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            min-width: 150px;
+        }
+
+        .sub li a{
+            padding: 10px 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .sub li a:hover{
+            background-color: #f5f5f5;
+        }
+
+
+        @media(max-width:768px){
+            .menu-btn{
+                display: block;
+            }
+
+            .menu{
+                /* display: none; */
+                flex-direction: column;
+            }
+
+            .menu.active{
+                display: flex;
+            }
+            .sub{
+                position: static;
+            }
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <ul class="header">
+        <li class="menu-btn">
+            <a href="#">menu</a>
+        </li>
+    </ul>
+    <ul class="menu">
+        <li>
+            <a href="#">메뉴1</a>
+            <ul class="sub"> 
+                <li><a href="#">엘사</a></li>
+                <li><a href="#">안나</a></li>
+                <li><a href="#">자매</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">메뉴2</a>
+            <ul class="sub"> 
+                <li><a href="#">엄마</a></li>
+                <li><a href="#">아빠</a></li>
+                <li><a href="#">부모님</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">메뉴3</a>
+            <ul class="sub"> 
+                <li><a href="#"> 꼬르륵 </a></li>
+                <li><a href="#">배고파</a></li>
+                <li><a href="#">집갈래</a></li>
+            </ul>
+        </li>
+    </ul>
+        
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // 화면 너비 체크
+            function isMobile() {
+                return window.innerWidth <= 768;
+            }
+
+            // PC에서만 hover 이벤트 적용
+            if (!isMobile()) {
+                $('.menu > li').hover(
+                    function(){
+                        $(this).find('.sub').stop().slideDown(300);
+                    },
+                    function(){
+                        $(this).find('.sub').stop().slideUp(300);
+                    }
+                );
+            } else {
+                // 모바일 아코디언
+                $('.menu > li > a').click(function(e){
+                    e.preventDefault();
+                    // 기본 속성 값을 해제
+
+                    let sub = $(this).next('.sub');
+                    // a 태그에 자식 요소 ul을 선택한 것
+
+
+                    $('.sub').not(sub).slideUp();
+                    // 모든 sub 중에서 방금 클릭한 것은 제외하고 나머지는 슬라이드 업
+
+                    sub.slideToggle();
+                    // 열려있으면 닫힘, 닫혀있으면 열림
+                });
+            }
+
+            // 모바일 메뉴 버튼
+            $('.menu-btn').click(function(){
+                $('.menu').toggleClass('active');
+            });
+        });
+    </script>
+    
+</body>
+</html>

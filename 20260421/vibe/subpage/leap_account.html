@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>청년도약계좌 만기 수령액 계산기 | YOUTH CALC</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../assets/js/script.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <h1 class="logo"><a href="../index.html">YOUTH<span>CALC</span></a></h1>
+            <button class="hamburger-btn" aria-label="메뉴 열기">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="../index.html">홈</a></li>
+                    <li><a href="#" class="active">적금/예금</a></li>
+                    <li><a href="../subpage/housing_loan.html">대출/주거</a></li>
+                    <li><a href="../subpage/year_end_tax.html">세금/연말정산</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <div class="page-header">
+            <h2>청년도약계좌<br>5년 만기 수령액은? 📈</h2>
+            <p>월 최대 70만원, 5년간 저축하며 비과세 + 정부기여금 혜택을 계산해보세요.</p>
+        </div>
+
+        <section class="calculator-layout">
+            <!-- Left: Settings Panel -->
+            <div class="calc-panel form-panel">
+                <div class="input-group">
+                    <label for="leap-income-tier">소득 구간 (정부기여금 매칭률)</label>
+                    <div class="select-wrapper">
+                        <select id="leap-income-tier">
+                            <option value="0.06">총급여 2,400만원 이하 (6%)</option>
+                            <option value="0.05">총급여 3,600만원 이하 (5%)</option>
+                            <option value="0.04">총급여 4,800만원 이하 (4%)</option>
+                            <option value="0.03">총급여 6,000만원 이하 (3%)</option>
+                            <option value="0">총급여 6,000만원 초과 (0% - 비과세만)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="leap-monthly-input">매월 저축 금액 (월 최대 70만원)</label>
+                    <div class="flex-input">
+                        <input type="text" id="leap-monthly-input" value="700,000">
+                        <span class="unit">원</span>
+                    </div>
+                    <div class="slider-wrapper">
+                        <input type="range" id="leap-monthly-slider" min="10000" max="700000" step="10000" value="700000">
+                        <div class="slider-labels">
+                            <span>1만원</span>
+                            <span>70만원</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="leap-basic-rate">기본 금리</label>
+                        <div class="flex-input">
+                            <input type="number" id="leap-basic-rate" min="0" max="10" step="0.1" value="4.5">
+                            <span class="unit">%</span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="leap-prime-rate">우대 금리</label>
+                        <div class="flex-input">
+                            <input type="number" id="leap-prime-rate" min="0" max="5" step="0.1" value="1.0">
+                            <span class="unit">%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <p>💡 <strong>청년도약계좌</strong>는 만 19~34세 청년이라면 가입 가능하며, 총급여 7,500만원 이하 (또는 종합소득 6,300만원 이하) 요건을 충족하면 됩니다. 5년 유지 시 이자소득이 <strong>비과세</strong>로 처리됩니다.</p>
+                </div>
+            </div>
+
+            <!-- Right: Result Panel -->
+            <div class="calc-panel result-panel">
+                <div class="result-header">
+                    <h3>5년 뒤 손에 들어올 돈</h3>
+                    <div class="total-amount"><span id="leap-total-result">0</span>원</div>
+                </div>
+
+                <div class="chart-wrapper">
+                    <div class="progress-bar">
+                        <div class="progress-segment type-principal" id="leap-bar-principal"></div>
+                        <div class="progress-segment type-interest" id="leap-bar-interest"></div>
+                        <div class="progress-segment type-gov" id="leap-bar-gov"></div>
+                    </div>
+                </div>
+
+                <ul class="breakdown-list">
+                    <li>
+                        <div class="label"><span class="dot type-principal"></span>내가 넣은 원금</div>
+                        <div class="value"><span id="leap-val-principal">0</span>원</div>
+                    </li>
+                    <li>
+                        <div class="label"><span class="dot type-interest"></span>은행 비과세 이자</div>
+                        <div class="value"><span id="leap-val-interest">0</span>원</div>
+                    </li>
+                    <li>
+                        <div class="label"><span class="dot type-gov"></span>정부 기여금 (비과세)</div>
+                        <div class="value"><span id="leap-val-gov">0</span>원</div>
+                    </li>
+                </ul>
+
+                <div class="result-badge-row">
+                    <div class="result-badge">
+                        <span class="badge-label">절세 효과</span>
+                        <span class="badge-value" id="leap-val-taxsave">0원</span>
+                    </div>
+                    <div class="result-badge">
+                        <span class="badge-label">실질 수익률</span>
+                        <span class="badge-value" id="leap-val-yield">0%</span>
+                    </div>
+                </div>
+
+                <div class="notice">
+                    * 이자는 단리(월 복리 근사) 기준이며, 비과세(15.4%) 혜택 적용 전 세금 절감액을 함께 표시합니다.
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

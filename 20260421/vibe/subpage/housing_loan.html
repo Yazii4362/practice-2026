@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>청년 버팀목 전세대출 계산기 | YOUTH CALC</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../assets/js/script.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <h1 class="logo"><a href="../index.html">YOUTH<span>CALC</span></a></h1>
+            <button class="hamburger-btn" aria-label="메뉴 열기">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="../index.html">홈</a></li>
+                    <li><a href="future_savings.html">적금/예금</a></li>
+                    <li><a href="#" class="active">대출/주거</a></li>
+                    <li><a href="../subpage/year_end_tax.html">세금/연말정산</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <div class="page-header">
+            <h2>청년 버팀목<br>전세대출 이자 계산기 🏠</h2>
+            <p>내 보증금과 대출 조건으로 예상 월 이자 및 총 이자 부담을 확인하세요.</p>
+        </div>
+
+        <section class="calculator-layout">
+            <!-- Left: Settings Panel -->
+            <div class="calc-panel form-panel">
+                <div class="input-group">
+                    <label for="loan-income-tier">소득 구간 (금리 우대 적용)</label>
+                    <div class="select-wrapper">
+                        <select id="loan-income-tier">
+                            <option value="1.5">청년 단독세대주 (연 1.5%)</option>
+                            <option value="2.1">부부합산 5천만원 이하 (연 2.1%)</option>
+                            <option value="2.4">부부합산 6천만원 이하 (연 2.4%)</option>
+                            <option value="2.7">부부합산 7천만원 이하 (연 2.7%)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="deposit-input">전세 보증금</label>
+                    <div class="flex-input">
+                        <input type="text" id="deposit-input" value="200,000,000">
+                        <span class="unit">원</span>
+                    </div>
+                    <div class="slider-wrapper">
+                        <input type="range" id="deposit-slider" min="10000000" max="300000000" step="5000000" value="200000000">
+                        <div class="slider-labels">
+                            <span>1천만원</span>
+                            <span>3억원</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="loan-ratio">대출 비율</label>
+                    <div class="flex-input">
+                        <input type="number" id="loan-ratio" min="10" max="80" step="5" value="80">
+                        <span class="unit">%</span>
+                    </div>
+                    <p class="input-hint">보증금의 최대 80% (최대 2억 2천만원) 대출 가능 — 자동 계산됩니다</p>
+                </div>
+
+                <div class="input-group">
+                    <label for="loan-term">대출 기간</label>
+                    <div class="select-wrapper">
+                        <select id="loan-term">
+                            <option value="1">1년</option>
+                            <option value="2" selected>2년</option>
+                            <option value="3">3년</option>
+                            <option value="4">4년</option>
+                            <option value="5">5년</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Result Panel -->
+            <div class="calc-panel result-panel">
+                <div class="result-header">
+                    <h3>예상 대출 금액</h3>
+                    <div class="total-amount"><span id="loan-amount-result">0</span>원</div>
+                </div>
+
+                <div class="chart-wrapper">
+                    <div class="progress-bar">
+                        <div class="progress-segment type-principal" id="loan-bar-principal"></div>
+                        <div class="progress-segment type-interest" id="loan-bar-interest"></div>
+                    </div>
+                </div>
+
+                <ul class="breakdown-list">
+                    <li>
+                        <div class="label"><span class="dot type-principal"></span>대출 원금</div>
+                        <div class="value"><span id="loan-val-principal">0</span>원</div>
+                    </li>
+                    <li>
+                        <div class="label"><span class="dot type-interest"></span>기간 내 총 이자</div>
+                        <div class="value"><span id="loan-val-total-interest">0</span>원</div>
+                    </li>
+                    <li>
+                        <div class="label">💸 월 납부 이자 (이자만)</div>
+                        <div class="value"><span id="loan-val-monthly-interest">0</span>원</div>
+                    </li>
+                    <li>
+                        <div class="label">📅 만기 후 돌려받는 보증금</div>
+                        <div class="value"><span id="loan-val-refund">0</span>원</div>
+                    </li>
+                </ul>
+
+                <div class="result-badge-row">
+                    <div class="result-badge">
+                        <span class="badge-label">적용 금리</span>
+                        <span class="badge-value" id="loan-val-rate">0%</span>
+                    </div>
+                    <div class="result-badge">
+                        <span class="badge-label">LTV 비율</span>
+                        <span class="badge-value" id="loan-val-ltv">0%</span>
+                    </div>
+                </div>
+
+                <div class="notice">
+                    * 청년 버팀목 전세자금대출은 만 19~34세, 세대주 또는 세대주 예정자 요건을 만족해야 하며, 실제 금리는 은행별로 다를 수 있습니다.
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
