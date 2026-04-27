@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apple Style Scroll</title>
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, sans-serif;
+  background: black;
+  color: white;
+}
+
+/* ScrollSmoother */
+#smooth-wrapper { overflow: hidden; }
+#smooth-content { will-change: transform; }
+
+/* HERO */
+.hero {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero h1 {
+  position: relative;
+  z-index: 10;
+  font-size: 80px;
+  text-align: center;
+}
+
+/* 이미지 공통 */
+.hero img {
+  position: absolute;
+  width: 60%;
+  max-width: 700px;
+}
+
+/* 초기 상태 */
+.img1 { opacity: 1; z-index: 3; }
+.img2 { opacity: 0; z-index: 2; }
+.img3 { opacity: 0; z-index: 1; }
+
+/* ABOUT */
+.about {
+  height: 200vh;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-inner {
+  text-align: center;
+}
+
+.about h2 {
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+
+.about p {
+  font-size: 20px;
+  opacity: 0.7;
+}
+</style>
+</head>
+
+<body>
+
+<div id="smooth-wrapper">
+<div id="smooth-content">
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Think Different</h1>
+
+
+  <img class="img1" src="/assets/images/ipad-hero.png">
+  <img class="img2" src="/assets/images/ipad-img.jpg">
+  <img class="img3" src="/assets/images/ipad-img2.jpg">
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-inner">
+    <h2>Powerful. Simple.</h2>
+    <p>Scroll to experience smooth motion</p>
+  </div>
+</section>
+
+</div>
+</div>
+
+<!-- GSAP -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://assets.codepen.io/16327/ScrollSmoother.min.js"></script>
+
+<script>
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+/* 스무스 스크롤 */
+ScrollSmoother.create({
+  wrapper: "#smooth-wrapper",
+  content: "#smooth-content",
+  smooth: 1.2,
+  effects: true
+});
+
+/* HERO 타임라인 */
+const heroTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".hero",
+    start: "top top",
+    end: "+=300%",
+    scrub: true,
+    pin: true
+  }
+});
+
+/* 텍스트 사라짐 */
+heroTl.to(".hero h1", {
+  opacity: 0,
+  scale: 0.6
+});
+
+/* 1번 이미지 확대 */
+heroTl.to(".img1", {
+  scale: 1.3
+}, 0);
+
+/* 1 → 2 */
+heroTl.to(".img1", { opacity: 0 }, 0.5);
+heroTl.to(".img2", { opacity: 1, scale: 1.3 }, 0.5);
+
+/* 2 → 3 */
+heroTl.to(".img2", { opacity: 0 }, 1);
+heroTl.to(".img3", { opacity: 1, scale: 1.3 }, 1);
+
+/* ABOUT 등장 */
+gsap.from(".about-inner", {
+  y: 100,
+  opacity: 0,
+  scrollTrigger: {
+    trigger: ".about",
+    start: "top 70%",
+    end: "top 40%",
+    scrub: true
+  }
+});
+</script>
+
+</body>
+</html>

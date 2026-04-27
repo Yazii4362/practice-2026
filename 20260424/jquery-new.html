@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Accordion</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.2/themes/base/jquery-ui.css">
+
+  <style>
+    .row{
+        display: flex;
+    }
+    .col-6{
+        width: 50%;
+    }
+
+    .qna-title{
+        color: pink;
+    }
+  </style>
+
+</head>
+<body>
+
+  <section class="content container mt-4">
+    <div class="row">
+      <div class="col-6">
+        <h3 id="faq-title" title="자주 묻는 질문 목록입니다">자주묻는 질문</h3>
+      </div>
+      <div class="col-6">
+        <div id="faq-accordion">
+          <h3 title="클릭하면 답변을 확인할 수 있습니다">태경이는 오늘 점심을 사준다고 했나요?</h3>
+          <div>
+            <p>네, 태경이는 오늘 점심을 사준다고 했습니다.</p>
+          </div>
+          <h3 title="클릭하면 답변을 확인할 수 있습니다">추가 질문 제목</h3>
+          <div>
+            <p>답변 내용을 여기에 작성하세요.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <script src="https://code.jquery.com/ui/1.14.2/jquery-ui.js"></script>
+  <script>
+    $(function () {
+      $("#accordion").accordion();
+      $("#faq-accordion").accordion();
+
+      // 툴팁
+      $("#faq-title").tooltip();
+      $("#faq-accordion h3").tooltip();
+    });
+  </script>
+</body>
+</html>
