@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+        }
+
+        body{
+            box-sizing: border-box;
+        }
+
+        a{ color:aliceblue; text-decoration: none;}
+        li{list-style: none;}
+
+        .container{
+            width:1440px;
+            margin: auto;
+        }
+
+        .tab-title ul{
+            display: flex; 
+        }
+
+        .tab-title li{
+            width:33%;
+            text-align:center;
+            padding:20px 0;
+            background:#333;
+            cursor: pointer;
+        }
+
+        /* active 상태 */
+        .tab-title li.active{
+            background:#ff6b6b;
+        }
+
+        .tab-body div{
+            background-color: aquamarine;
+            text-align: center;
+            padding:50px 0;
+        }
+
+        .tab-body-2,
+        .tab-body-3{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="tab-title">
+            <ul>
+                <li class="tab-title-1 active"><a href="#">TAB-1</a></li>
+                <li class="tab-title-2"><a href="#">TAB-2</a></li>
+                <li class="tab-title-3"><a href="#">TAB-3</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="tab-body">
+        <div class="tab-body-1">
+            <h1>hi</h1>
+        </div>
+        <div class="tab-body-2">
+            <h2>hello</h2>
+        </div>
+        <div class="tab-body-3">
+            <h2>third</h2>
+        </div>
+    </div>
+
+
+<script src="js/libs/jquery.min.js"></script>
+<script>
+$(function(){
+
+    $(".tab-title-1").click(function(e){
+        e.preventDefault();
+
+        $(".tab-title li").removeClass("active");
+        $(this).addClass("active");
+
+        $(".tab-body > div").hide();   
+        $(".tab-body-1").show();
+    });
+
+    $(".tab-title-2").click(function(e){
+        e.preventDefault();
+
+        $(".tab-title li").removeClass("active");
+        $(this).addClass("active");
+
+        $(".tab-body > div").hide();
+        $(".tab-body-2").show();
+    });
+
+    $(".tab-title-3").click(function(e){
+        e.preventDefault();
+
+        $(".tab-title li").removeClass("active");
+        $(this).addClass("active");
+
+        $(".tab-body > div").hide();
+        $(".tab-body-3").show();
+    });
+
+});
+</script>
+    </script>
+
+</body>
+</html>

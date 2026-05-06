@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apple Style Scroll</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{overflow:hidden; font-family:sans-serif;}
+
+/* 섹션 */
+.section{
+    position:absolute;
+    width:100%;
+    height:100vh;
+    top:0;
+    left:0;
+}
+
+/* 배경 */
+.bg{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background-size:cover;
+    background-position:center;
+    transform:scale(1.1);
+}
+
+/* 텍스트 */
+.content{
+    position:relative;
+    z-index:2;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
+    text-align:center;
+}
+
+.content h1{
+    font-size:60px;
+    margin-bottom:20px;
+    opacity:0;
+    transform:translateY(50px);
+}
+
+.content p{
+    font-size:20px;
+    opacity:0;
+    transform:translateY(50px);
+}
+
+/* 초기 상태 */
+.section:not(:first-child){
+    transform:translateY(100%);
+}
+</style>
+</head>
+
+<body>
+
+<!-- 6개 섹션 -->
+<div class="section">
+    <div class="bg" style="background-image:url('images/img1.avif')"></div>
+    <div class="content"><h1>01</h1><p>First Section</p></div>
+</div>
+
+<div class="section">
+    <div class="bg" style="background-image:url('images/img2.avif')"></div>
+    <div class="content"><h1>02</h1><p>Second Section</p></div>
+</div>
+
+<div class="section">
+    <div class="bg" style="background-image:url('images/img3.avif')"></div>
+    <div class="content"><h1>03</h1><p>Third Section</p></div>
+</div>
+
+<div class="section">
+    <div class="bg" style="background-image:url('images/img4.avif')"></div>
+    <div class="content"><h1>04</h1><p>Fourth Section</p></div>
+</div>
+
+<div class="section">
+    <div class="bg" style="background-image:url('images/img5.avif')"></div>
+    <div class="content"><h1>05</h1><p>Fifth Section</p></div>
+</div>
+
+<div class="section">
+    <div class="bg" style="background-image:url('images/img6.avif')"></div>
+    <div class="content"><h1>06</h1><p>Sixth Section</p></div>
+</div>
+<!-- GSAP -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/Observer.min.js"></script>
+
+<script>
+gsap.registerPlugin(Observer);
+
+let sections = document.querySelectorAll(".section");
+let current = 0;
+let animating = false;
+
+/* 텍스트 애니메이션 */
+function animateText(section){
+    let h1 = section.querySelector("h1");
+    let p = section.querySelector("p");
+
+    gsap.fromTo([h1, p],
+        {y:50, opacity:0},
+        {
+            y:0,
+            opacity:1,
+            duration:0.8,
+            stagger:0.2,
+            ease:"power2.out"
+        }
+    );
+}
+
+/* 초기 텍스트 실행 */
+animateText(sections[0]);
+
+function goToSection(index, direction){
+
+    if(animating) return;
+    animating = true;
+
+    let currentSection = sections[current];
+    let nextSection = sections[index];
+
+    let currentBg = currentSection.querySelector(".bg");
+    let nextBg = nextSection.querySelector(".bg");
+
+    gsap.set(nextSection, {
+        y: direction === "down" ? "100%" : "-100%"
+    });
+
+    /* 애플 느낌: 배경 scale */
+    gsap.to(currentBg, {
+        scale:1,
+        duration:1
+    });
+
+    gsap.to(nextBg, {
+        scale:1.1,
+        duration:1
+    });
+
+    gsap.to(currentSection, {
+        y: direction === "down" ? "-100%" : "100%",
+        duration:1,
+        ease:"power2.inOut"
+    });
+
+    gsap.to(nextSection, {
+        y:"0%",
+        duration:1,
+        ease:"power2.inOut",
+        onComplete: () => {
+            animateText(nextSection);
+            animating = false;
+        }
+    });
+
+    current = index;
+}
+
+/* Observer */
+Observer.create({
+    type:"wheel,touch",
+
+    onDown: () => {
+        if(current < sections.length - 1){
+            goToSection(current + 1, "down");
+        }
+    },
+
+    onUp: () => {
+        if(current > 0){
+            goToSection(current - 1, "up");
+        }
+    },
+
+    tolerance:10,
+    preventDefault:true
+});
+</script>
+
+</body>
+</html>
