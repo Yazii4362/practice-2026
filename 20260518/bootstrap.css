@@ -1,0 +1,12 @@
+.sec01-kv {
+    background: url('');  /* 이미지 경로를 여기에 넣으세요 예: url('img/banner.jpg') */
+}
+
+.display-content {
+    height: 100vh;
+}
+
+.icon-content span {
+    font-size: 60px;
+    color:skyblue;
+}

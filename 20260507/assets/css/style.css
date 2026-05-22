@@ -1,0 +1,95 @@
+/* =========================
+   FONT
+========================= */
+
+@font-face {
+    font-family: 'lee';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src:
+        local('Lee'),
+        url('../font/lee-400.woff2') format('woff2');
+}
+
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'lee', sans-serif;
+    color:#111;
+    background:#F5F7FA;
+    line-height:1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+img{
+    display:block;
+    max-width:100%;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+ul,
+ol{
+    list-style:none;
+}
+
+button,
+input,
+textarea{
+    font:inherit;
+    border:none;
+    outline:none;
+    background:none;
+}
+
+
+/* =========================
+   LAYOUT
+========================= */
+
+.container{
+    width:min(1400px, 90%);
+    margin:0 auto;
+}
+
+.section{
+    padding:120px 0;
+}
+
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+
+h1{
+    font-size:64px;
+    font-weight:400;
+    line-height:1.1;
+}
+
+h2{
+    font-size:40px;
+    font-weight:400;
+}
+
+p{
+    font-size:16px;
+}
