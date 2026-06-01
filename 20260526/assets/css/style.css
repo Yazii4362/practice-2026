@@ -1,0 +1,22 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.kv1{
+
+    padding:40px;
+
+    .row{
+        display:flex;
+        gap:20px;
+    }
+
+    .col-md-3{
+        width:100px;
+        height:100px;
+        background:pink;
+    }
+
+}
